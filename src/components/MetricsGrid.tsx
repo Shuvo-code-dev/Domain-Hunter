@@ -13,31 +13,34 @@ interface MetricCardProps {
 
 const MetricCard = ({ label, value, icon: Icon, status, delay }: MetricCardProps) => {
   const statusColors = {
-    good: "text-brand-primary border-brand-primary/20",
-    average: "text-yellow-400 border-yellow-400/20",
-    poor: "text-brand-accent border-brand-accent/20",
+    good: "text-brand-primary border-brand-primary/20 bg-brand-primary/5",
+    average: "text-yellow-400 border-yellow-400/20 bg-yellow-400/5",
+    poor: "text-brand-accent border-brand-accent/20 bg-brand-accent/5",
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay }}
-      className="glass p-6 rounded-2xl flex flex-col gap-4 relative group overflow-hidden"
+      transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="glass glass-hover p-8 rounded-[2rem] flex flex-col gap-6 relative group overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="flex items-center justify-between">
-        <div className={`p-2 rounded-lg bg-white/5 ${statusColors[status].split(' ')[0]}`}>
-          <Icon size={20} />
+        <div className={cn("p-3 rounded-2xl", statusColors[status])}>
+          <Icon size={24} strokeWidth={1.5} />
         </div>
-        <span className={`text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded-full bg-white/5 border ${statusColors[status]}`}>
-          {status}
-        </span>
+        <div className="flex flex-col items-end">
+          <span className="text-[10px] uppercase font-black tracking-[0.2em] opacity-40">Status</span>
+          <span className={cn("text-[11px] font-bold uppercase", statusColors[status].split(' ')[0])}>
+            {status}
+          </span>
+        </div>
       </div>
       <div>
-        <h3 className="text-sm text-white/50 mb-1">{label}</h3>
-        <p className="text-2xl font-bold font-mono">{value}</p>
+        <h3 className="text-sm font-medium text-white/40 mb-1">{label}</h3>
+        <p className="text-3xl font-bold tracking-tight">{value}</p>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </motion.div>
   );
 };

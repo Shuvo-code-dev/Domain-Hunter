@@ -46,181 +46,197 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen relative flex flex-col items-center px-6 py-12 md:py-24">
+    <main className="min-h-screen relative flex flex-col items-center px-6 py-20 md:py-32">
       <BackgroundEffect />
-
-      {/* Header */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 backdrop-blur-md border-b border-white/5">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center glow-primary">
-            <Zap className="text-black" size={18} fill="currentColor" />
+      
+      {/* Premium Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <div className="max-w-7xl mx-auto glass rounded-full px-8 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center transition-transform group-hover:rotate-12">
+              <Zap size={22} fill="currentColor" />
+            </div>
+            <span className="text-xl font-black tracking-tighter uppercase">DomainHunter</span>
           </div>
-          <span className="text-xl font-bold tracking-tight">DomainHunter</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8 text-sm text-white/60">
-          <a href="#" className="hover:text-white transition-colors">API</a>
-          <a href="#" className="hover:text-white transition-colors">Docs</a>
-          <a href="#" className="hover:text-white transition-colors">Pricing</a>
-          <button className="px-4 py-2 rounded-full glass hover:bg-white/10 transition-colors">Login</button>
+          
+          <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest text-white/40">
+            <a href="#" className="hover:text-white transition-colors">Analyzer</a>
+            <a href="#" className="hover:text-white transition-colors">Solutions</a>
+            <a href="#" className="hover:text-white transition-colors">Enterprise</a>
+            <button className="px-6 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-white">Console</button>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <div className="w-full max-w-3xl flex flex-col items-center text-center mt-12 md:mt-0">
+      <div className="w-full max-w-4xl flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="mb-6 px-4 py-1.5 rounded-full border border-brand-primary/20 bg-brand-primary/5 text-brand-primary text-xs font-bold tracking-widest uppercase flex items-center gap-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8 px-5 py-2 rounded-full glass text-[10px] font-black tracking-[0.3em] uppercase text-brand-primary flex items-center gap-3"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
-          </span>
-          Global Infrastructure v2.0
+          <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse shadow-[0_0_10px_#00f2ff]" />
+          Infrastructure v2.4.0 Active
         </motion.div>
-
+        
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]"
         >
-          Measure Your Speed <br />
-          <span className="text-gradient">Hunt For Performance</span>
+          Speed is the <br />
+          <span className="text-brand-gradient">Ultimate Advantage.</span>
         </motion.h1>
-
+        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-lg text-white/50 mb-12 max-w-xl"
+          transition={{ delay: 0.1, duration: 0.8 }}
+          className="text-lg md:text-xl text-white/40 mb-16 max-w-2xl font-medium leading-relaxed"
         >
-          Get real-time insights into your website&apos;s performance with our high-fidelity tracking engine. Optimized for Core Web Vitals.
+          DomainHunter identifies bottlenecks in milliseconds. Get enterprise-grade performance insights for any domain instantly.
         </motion.p>
 
-        {/* Search Bar */}
+        {/* Search Bar Refined */}
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
           onSubmit={handleScan}
-          className="w-full relative group"
+          className="w-full max-w-2xl relative group"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/20 to-brand-secondary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="relative glass p-2 rounded-2xl flex items-center gap-2">
-            <div className="pl-4 text-white/40">
-              <Globe size={20} />
+          <div className="absolute inset-0 bg-brand-primary/20 blur-[100px] opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
+          <div className="relative glass p-2 rounded-3xl flex items-center gap-2 border-white/10 focus-within:border-brand-primary/50 transition-colors">
+            <div className="pl-6 text-white/20">
+              <Globe size={22} strokeWidth={1.5} />
             </div>
             <input
               type="text"
-              placeholder="Enter your domain (e.g. google.com)"
+              placeholder="analyze-domain.com"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="flex-1 bg-transparent border-none outline-none text-lg px-2 placeholder:text-white/20"
+              className="flex-1 bg-transparent border-none outline-none text-xl font-medium px-4 placeholder:text-white/10"
             />
             <button
               type="submit"
               disabled={isLoading}
-              className={cn(
-                "px-6 py-3 rounded-xl bg-white text-black font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:scale-100",
-                isLoading && "animate-pulse"
-              )}
+              className="btn-primary flex items-center gap-3"
             >
-              {isLoading ? "Hunting..." : "Scan Website"}
-              {!isLoading && <ChevronRight size={18} />}
+              {isLoading ? (
+                <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
+              ) : (
+                <>
+                  <span className="hidden sm:inline">Start Analysis</span>
+                  <ChevronRight size={20} />
+                </>
+              )}
             </button>
           </div>
         </motion.form>
 
-        {/* Error Message */}
-        <AnimatePresence>
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="mt-4 p-4 rounded-xl bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-sm"
-            >
-              {error}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <div className="mt-8 flex gap-4">
-          <button className="flex items-center gap-2 text-xs text-white/40 hover:text-white transition-colors">
-            <History size={14} /> View History
+        <div className="mt-10 flex gap-10">
+          <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/30 hover:text-white transition-colors group">
+            <History size={16} className="group-hover:rotate-[-20deg] transition-transform" /> Recent Hunts
           </button>
-          <button className="flex items-center gap-2 text-xs text-white/40 hover:text-white transition-colors">
-            <Share2 size={14} /> Share Report
+          <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/30 hover:text-white transition-colors group">
+            <Share2 size={16} className="group-hover:scale-110 transition-transform" /> Export Data
           </button>
         </div>
       </div>
 
-      {/* Results Section */}
+      {/* Results Section Revamped */}
       <AnimatePresence mode="wait">
         {(results || isLoading) && (
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="w-full max-w-5xl mt-24 flex flex-col items-center gap-12"
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-6xl mt-32 space-y-10"
           >
-            <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 glass p-12 rounded-[2.5rem] relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-white/20 font-mono">
-                  Report ID: {results?.reportId || "---"}
-                </span>
-              </div>
+            {/* Main Score Card */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              <div className="lg:col-span-8 glass p-12 md:p-16 rounded-[3rem] flex flex-col md:flex-row items-center gap-16 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-10 opacity-10">
+                  <Zap size={200} strokeWidth={0.5} />
+                </div>
+                
+                <div className="flex-1 space-y-8 relative z-10 text-center md:text-left">
+                  <div>
+                    <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-primary mb-4">Live Performance Report</h2>
+                    <h3 className="text-4xl md:text-5xl font-black tracking-tighter truncate max-w-md">
+                      {results?.url || url || "Analyzing..."}
+                    </h3>
+                  </div>
+                  
+                  <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                    <div className="px-5 py-2 rounded-full glass border-white/10 text-[10px] font-black uppercase tracking-widest">Desktop V8.2</div>
+                    <div className="px-5 py-2 rounded-full glass border-white/10 text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity cursor-pointer">Mobile Switch</div>
+                  </div>
 
-              <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                <h2 className="text-3xl font-bold mb-2">Performance Score</h2>
-                <p className="text-white/50 mb-6 flex items-center gap-2">
-                  <Globe size={14} /> {results?.url || url}
-                </p>
-                <div className="flex gap-2">
-                  <div className="px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-[10px] uppercase font-bold text-brand-primary">Desktop</div>
-                  <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase font-bold text-white/40">Mobile</div>
+                  <div className="pt-6 grid grid-cols-2 gap-8 border-t border-white/5">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-white/20 block mb-1">Origin Status</span>
+                      <span className="text-lg font-bold text-brand-primary">OPTIMIZED</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-white/20 block mb-1">Server Region</span>
+                      <span className="text-lg font-bold">Oregon, US-W</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <SpeedGauge score={results?.score || 0} label="Global Score" isLoading={isLoading} />
                 </div>
               </div>
 
-              <SpeedGauge score={results?.score || 0} label="Overall" isLoading={isLoading} />
-
-              <div className="hidden lg:block w-px h-32 bg-white/10" />
-
-              <div className="flex flex-col gap-4">
-                <div className="text-center md:text-right">
-                  <span className="text-[10px] uppercase tracking-widest text-white/30 block mb-1">Status</span>
-                  <span className="text-lg font-bold text-brand-primary">OPTIMIZED</span>
-                </div>
-                <div className="text-center md:text-right">
-                  <span className="text-[10px] uppercase tracking-widest text-white/30 block mb-1">Location</span>
-                  <span className="text-lg font-bold">San Francisco, US</span>
+              {/* Side Recommendations */}
+              <div className="lg:col-span-4 flex flex-col gap-10">
+                <div className="glass p-10 rounded-[3rem] flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-6">
+                      <Zap size={24} />
+                    </div>
+                    <h4 className="text-xl font-bold mb-3 tracking-tight">System Analysis</h4>
+                    <p className="text-sm text-white/40 leading-relaxed">
+                      We detected unoptimized media assets. Compressing your imagery could reduce LCP by up to 450ms.
+                    </p>
+                  </div>
+                  <button className="w-full mt-8 py-4 rounded-2xl border border-white/10 hover:bg-white/5 font-bold transition-all text-sm tracking-tight">
+                    View Optimization Guide
+                  </button>
                 </div>
               </div>
             </div>
 
+            {/* Metrics Grid */}
             <MetricsGrid metrics={results?.metrics || null} isLoading={isLoading} />
 
-            <div className="w-full glass p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-xl bg-white/5 text-white/50">
-                  <History size={24} />
+            {/* Footer Action */}
+            <div className="glass p-10 rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-8 group">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center text-white/20 group-hover:text-brand-primary transition-colors">
+                  <Search size={32} />
                 </div>
                 <div>
-                  <h4 className="font-bold">Recommendations</h4>
-                  <p className="text-sm text-white/40">Optimize images and reduce unused Javascript to save 1.2s.</p>
+                  <h4 className="text-lg font-bold tracking-tight">Want deeper insights?</h4>
+                  <p className="text-sm text-white/40">Connect your site for continuous real-time monitoring and automated alerts.</p>
                 </div>
               </div>
-              <button className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition-all">
-                Download Full PDF Report
+              <button className="px-10 py-5 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all">
+                Connect Domain
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Footer */}
-      <footer className="mt-auto pt-24 pb-12 text-white/20 text-[10px] uppercase tracking-widest font-mono">
-        &copy; 2026 DomainHunter Performance Systems. All rights reserved.
+      <footer className="mt-32 pb-12 text-center">
+        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/10">
+          Powered by DomainHunter Global Edge Infrastructure
+        </p>
       </footer>
     </main>
   );

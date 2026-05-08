@@ -4,12 +4,14 @@
   --color-brand-primary: #00f2ff;
   --color-brand-secondary: #7000ff;
   --color-brand-accent: #ff00c8;
+  --color-brand-surface: #0a0a0a;
   
-  --background: #050505;
+  --background: #030303;
   --foreground: #ffffff;
   
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes float {
@@ -17,9 +19,15 @@
   50% { transform: translateY(-20px); }
 }
 
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(0, 242, 255, 0.2); }
+  to { box-shadow: 0 0 25px rgba(0, 242, 255, 0.5); }
+}
+
 :root {
-  --background: #050505;
+  --background: #030303;
   --foreground: #ffffff;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -35,27 +43,55 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer components {
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08] shadow-2xl;
+  }
+  
+  .glass-hover {
+    @apply hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300;
   }
   
   .glass-dark {
-    @apply bg-black/40 backdrop-blur-2xl border border-white/5;
+    @apply bg-black/60 backdrop-blur-3xl border border-white/5;
   }
   
   .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40;
+  }
+  
+  .text-brand-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent;
   }
 
   .glow-primary {
-    @apply shadow-[0_0_30px_rgba(0,242,255,0.3)];
+    @apply shadow-[0_0_40px_rgba(0,242,255,0.2)];
+  }
+  
+  .btn-primary {
+    @apply relative overflow-hidden bg-white text-black font-bold px-8 py-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)];
   }
 }
 
 ::selection {
   background: rgba(0, 242, 255, 0.3);
   color: white;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
