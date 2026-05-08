@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Zap, Clock, MousePointer2, LayoutPanelLeft, LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface MetricCardProps {
   label: string;

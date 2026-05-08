@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, ChevronRight, Share2, History, Zap } from "lucide-react";
+import { Globe, ChevronRight, Share2, History, Zap, Search } from "lucide-react";
 import { BackgroundEffect } from "@/components/BackgroundEffect";
 import { SpeedGauge } from "@/components/SpeedGauge";
 import { MetricsGrid } from "@/components/MetricsGrid";
